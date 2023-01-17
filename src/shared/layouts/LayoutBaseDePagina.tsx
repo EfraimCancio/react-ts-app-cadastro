@@ -1,5 +1,5 @@
 //import { PropsWithChildren } from 'react';
-import { Box, Icon, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Icon, IconButton, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { ReactNode } from 'react';
 import { useDrawerContext } from '../contexts';
 
@@ -10,11 +10,11 @@ interface ILayoutBaseDePagina {
 }
 
 // eslint-disable-next-line react/prop-types
-export const LayoutBaseDePagina: React.FunctionComponent<ILayoutBaseDePagina> = ( {titulo, children, barraDeFerramentas} ) => {
+export const LayoutBaseDePagina: React.FC<ILayoutBaseDePagina> = ( {titulo, children, barraDeFerramentas} ) => {
 
   const theme = useTheme();  
-  const smDown = useMediaQuery(theme.breakpoints.down ('sm')); 
-  const mdDown = useMediaQuery(theme.breakpoints.down ('md')); 
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down ('sm')); 
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down ('md')); 
 
   const { toggleDrawerOpen } = useDrawerContext();
 
