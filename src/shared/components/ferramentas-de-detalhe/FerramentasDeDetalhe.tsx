@@ -61,6 +61,7 @@ export const FerramentasDeDetalhe: React.FC<IFerramentasDeDetalheProps> = ({
       alignItems="center" 
       height={theme.spacing(5)}
       component={Paper}
+      sx={{  width: 'auto' }}
     >
       {(mostrarBotaoSalvar && !mostrarBotaoSalvarCarregando) && (
         <Button
