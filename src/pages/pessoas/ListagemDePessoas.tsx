@@ -1,12 +1,13 @@
 
 import { useEffect, useMemo, useState } from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
 import { FerramentasDaListagem } from '../../shared/components';
 import { useDebounce } from '../../shared/hooks';
 import { LayoutBaseDePagina } from '../../shared/layouts';
 import { IListagemPessoa, PessoasService } from '../../shared/services/api/pessoas/PessoasServices';
+import { Environment } from '../../shared/environments';
 
 
 export const ListagemDePessoas = () => {
@@ -19,6 +20,10 @@ export const ListagemDePessoas = () => {
 
   const busca = useMemo(() => {
     return searchParams.get('busca') || '';
+  }, [searchParams]);
+
+  const pagina = useMemo(() => {
+    return searchParams.get('pagina') || '';
   }, [searchParams]);
 
   useEffect(() => {
@@ -72,6 +77,20 @@ export const ListagemDePessoas = () => {
               </TableRow>
             ))}
           </TableBody>
+
+            {totalCount === 0 && !isLoading && (
+              <caption>{Environment.LISTAGEM_VAZIA}</caption>
+            )}  
+
+          <TableFooter>
+            {isLoading && (
+              <TableRow>
+                <TableCell colSpan={3}>
+                    <LinearProgress variant='indeterminate' />
+                </TableCell>
+              </TableRow>
+            )}
+          </TableFooter>
         </Table>
       </TableContainer>
 
