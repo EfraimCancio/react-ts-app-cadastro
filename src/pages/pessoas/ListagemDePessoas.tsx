@@ -71,6 +71,7 @@ export const ListagemDePessoas = () => {
           mostrarInputBusca
           textoBotaoNovo="Nova"  
           textoDaBusca={busca}
+          aoClicarEmNovo={() => navigate('/pessoas/detalhe/nova')}
           aoMudarTextoDeBusca={texto => setSearchParams({ busca: texto, pagina: '1' }, {replace: true})}
         />
       }
